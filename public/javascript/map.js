@@ -1,5 +1,4 @@
 mapboxgl.accessToken = mapToken;
-console.log(listing);
 const map = new mapboxgl.Map({
   container: 'map',
   center: listing.geometry.coordinates,
@@ -13,47 +12,5 @@ const marker1 = new mapboxgl.Marker({color:'red'})
         `<h3>${listing.title}</h3><p>Exjact location give after booking</p>`
     ))
     .addTo(map);
-
-
-//  map.on('load', () => {
-//         // Load an image from an external URL.
-//         map.loadImage(
-//             '/logo.png',
-//             (error, image) => {
-//                 if (error) throw error;
-
-//                 // Add the image to the map style.
-//                 map.addImage('cat', image);
-
-//                 // Add a data source containing one point feature.
-//                 map.addSource('point', {
-//                     'type': 'geojson',
-//                     'data': {
-//                         'type': 'FeatureCollection',
-//                         'features': [
-//                             {
-//                                 'type': 'Feature',
-//                                 'geometry': {
-//                                     'type': 'Point',
-//                                     'coordinates': listing.geometry.coordinates
-//                                 }
-//                             }
-//                         ]
-//                     }
-//                 });
-
-//                 // Add a layer to use the image to represent the data.
-//                 map.addLayer({
-//                     'id': 'points',
-//                     'type': 'symbol',
-//                     'source': 'point', // reference the data source
-//                     'layout': {
-//                         'icon-image': 'cat', // reference the image
-//                         'icon-size': 1.5
-//                     }
-//                 });
-//             }
-//         );
-//     });
 
 
