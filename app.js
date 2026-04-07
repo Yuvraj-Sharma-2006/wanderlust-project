@@ -21,8 +21,6 @@ const userRouter = require("./router/user.js");
 const port = 8080;
 
 const mongo_url= process.env.ATLAS_URL;
-const local_url='mongodb://127.0.0.1:27017/wanderlust';
-
 app.engine("ejs",ejsMate);
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"./views"));
@@ -33,7 +31,7 @@ app.use(express.urlencoded({extended :true}));
 app.use(methodOverride("_method"));
 
 async function main(){
-    mongoose.connect(local_url);
+    mongoose.connect(mongo_url);
 }
 
 main().then(()=>{
@@ -43,7 +41,7 @@ main().then(()=>{
 });
 
 const sessionStore = MongoStore.create({
-    mongoUrl: local_url,
+    mongoUrl: mongo_url,
     crypto : {
         secret : process.env.SECRET,
     },
