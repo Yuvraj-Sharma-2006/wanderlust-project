@@ -15,7 +15,7 @@ module.exports.signUp = async(req,res)=>{
           next(err);
        }
       req.flash("success","welcome to the wanderlust");
-      res.redirect("/listings");
+      res.redirect("/");
     });
   }catch(e){
      req.flash("error" , "user is already register");
@@ -41,6 +41,6 @@ module.exports.logOut = (req,res,next)=>{
          next(err);
       }
       req.flash("success" , "you are logged out from wanderlust!");
-      res.redirect("/listings");
+      res.redirect("/");
    });
 };
