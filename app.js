@@ -10,6 +10,8 @@ const ejsMate =  require('ejs-mate');
 const ExpressError = require("./utils/ExpressError.js");
 const listingRouter = require("./router/listing.js");
 const reviewRouter = require("./router/review.js");
+const asyncWrap = require("./utils/asyncwrap.js");
+const listingController = require("./controllers/listings.js");
 const session = require("express-session");
 const {MongoStore} = require('connect-mongo');
 console.log(MongoStore);
@@ -78,6 +80,7 @@ app.use((req,res,next)=>{
     next();
 });
 
+app.get("/",asyncWrap(listingController.index));
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
 app.use("/",userRouter);

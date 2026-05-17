@@ -22,7 +22,6 @@ router.get("/category/:cat",
 
 router.
     route("/")
-    .get(asyncWrap(listingController.index))//index router(read)
     .post(//create new listingsS
       isLoggedIn,
       upload.single('listing[image]'),
