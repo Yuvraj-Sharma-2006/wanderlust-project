@@ -1,11 +1,9 @@
 <% layout('/layouts/boilerplate') -%>
     <script>
       let displayListings = <%- JSON.stringify(allListings) %>;
-      console.log(displayListings)
     </script>
 <body>
      <div class="filters">
-      <div class="category-filters">
         <a href="/listings/category/trandings">
          <div class="filter">
              <div><i class="fa-solid fa-fire"></i></div>
@@ -75,15 +73,14 @@
              <p>Boating house</p>
          </div>
         </a>
-       </div>  
-       
+
          <div class="tax-toggle">
           <div class="form-check-reverse form-switch">
             <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
-            <label class="form-check-label" for="switchCheckDefault">Price with taxes</label>
+            <label class="form-check-label" for="switchCheckDefault">Display after Total taxes</label>
           </div>
          </div>
-        </div>
+     </div>
      <div class="row row-cols-lg-4 row-cols-md-3  row-cols-sm-2" >
         <% for(let listing of allListings){ %>
          <a href="/listings/<%=listing._id%>" class="listing-link">

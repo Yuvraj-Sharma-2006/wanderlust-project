@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const asyncWrap = require("../utils/asyncwrap.js");
-const {isLoggedIn ,validateListing ,isOwner} = require("../middleware.js");
+const {isLoggedIn ,validateListing ,isOwner,validateSearch} = require("../middleware.js");
 const listingController = require("../controllers/listings.js");
 const multer  = require('multer');
 const {storage} = require("../cloundConfig.js");
@@ -9,6 +9,16 @@ const upload = multer({storage});
 //create 
 //new route
 router.get("/new",isLoggedIn,listingController.renderNewForm);
+
+router.get("/search",
+    validateSearch,
+    asyncWrap(listingController.searchListing)
+);
+
+router.get("/category/:cat",
+    asyncWrap(listingController.filteredListing)
+);
+
 
 router.
     route("/")

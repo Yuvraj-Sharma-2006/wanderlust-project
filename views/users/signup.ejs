@@ -1,28 +1,28 @@
 <% layout('/layouts/boilerplate') -%>
 <body>
      <div class="row mt-3">
-       <div class="col-6 offset-3">
+       <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-10 offset-1">
        <h3> Sign up on wanderlust  </h3>
        <form method="post" action="/signup" class="needs-validation" novalidate>
        <div class="mb-3">
            <label for="username" class="form-label">Username : </label>
-           <input type="text" class="form-control" id="username" name="username"  minlength='3' placeholder="enter user name " required>
+           <input type="text" class="form-control" id="username" name="username"  minlength='3' pattern="^[A-Za-z]+(?: [A-Za-z]+)*$" placeholder="enter user name " required>
            <div class="valid-feedback"> Look good  </div>
-           <div class="invalid-feedback">username length should be greater then 2 </div>
+           <div class="invalid-feedback">username only have character,not start with space and minimum 3 character</div>
        </div>
 
         <div class="mb-3">
            <label for="email" class="form-label">Email : </label>
-           <input type="email" class="form-control" id="email" name="email"  minlength='5' placeholder="enter user email " required>
+           <input type="text" class="form-control" id="email" name="email"pattern="^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$" minlength='5' placeholder="enter user email " required>
            <div class="valid-feedback"> Look good  </div>
            <div class="invalid-feedback">please enter a valid email</div>
        </div>
 
         <div class="mb-3">
            <label for="password" class="form-label">Password : </label>
-           <input type="password" class="form-control" id="password" name="password"  placeholder="enter user password " required>
+           <input type="password" class="form-control" id="password" name="password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z][A-Za-z0-9@$!%*?&]{7,}$" placeholder="enter user password " required>
            <div class="valid-feedback"> Look good  </div>
-           <div class="invalid-feedback">please enter a valid password</div>
+           <div class="invalid-feedback">password must be have 1 uppearcase character,1 lowercase character,1 special character,1 number and minimum 8 character</div>
        </div>
 
        <button class="btn btn-primary"> sign up</button>

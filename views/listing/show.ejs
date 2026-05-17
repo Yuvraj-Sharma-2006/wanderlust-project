@@ -1,12 +1,13 @@
 <% layout("/layouts/boilerplate") -%>
 <body>
      <div class="row mt-3">
-        <div class="col-md-8 offset-3">
-            <h3><%= listing.title %></h3> 
+        <div class="col-lg-8 offset-lg-2">
+            <h3 class="title"><%= listing.title %></h3> 
         </div>
      </div>
+
      <div class="row">
-        <div class="col-md-6 offset-3">
+        <div class="col-lg-8 offset-lg-2 ">
             <div class="card listing-card">
                <img src= "<%=listing.image.url%>" class="card-img-top show-img" alt="listing-img">
                <div class="card-body">
@@ -14,7 +15,8 @@
                  <p class="card-text"><%= listing.description %> </p>
                  <p>&#8377; <%=listing.price.toLocaleString("en-IN") %> <br>
                     <%= listing.location %>  <br>
-                    <%= listing.country %> 
+                    <%= listing.country %>  <br>
+                    <span> Category : <%= listing.category %> </span>
                  </p>
                </div>
 
@@ -31,13 +33,13 @@
          </div>
    
          <% if(currUser){ %>
-         <div class="col-md-6 offset-3">
+         <div class="col-lg-8 offset-lg-2">
           <hr>
              <h3> Leave a Comments </h3>
          </div>
-         <div class="col-md-6 offset-3 mb-3">
+         <div class="col-lg-8 offset-lg-2">
             <label for="rating" class="form-label">Rating</label>
-            <form method="post" id="rating" class="needs-validation" action="/listings/<%=listing._id%>/reviews" novalidate>
+            <form method="post" id="rating" class="needs-validation ms-2" action="/listings/<%=listing._id%>/reviews" novalidate>
                <fieldset class="starability-growRotate">
                   <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
                   <input type="radio" id="first-rate1" name="review[rating]" value="1" />
@@ -52,27 +54,28 @@
                   <label for="first-rate5" title="Amazing">5 stars</label>
                </fieldset>
 
-               <div class="col-md-12">
+               <div class="col-lg-12">
                   <label for="commet" class="form-label"> commet  </label>
                   <textarea id="commet" class="form-control" name="review[comment]" placeholder="enter a commet " minlength="5" rows="5" cols="25" required></textarea>
                   <div class="valid-feedback"> Looks good! </div>
                   <div class="invalid-feedback">please add a comment at least 5 character </div>
                </div>
 
-               <div class="col-md-12 mt-3">
+               <div class="col-lg-12 mt-3">
                  <button class="btn btn-outline-dark"> Submit </button>
                </div>
             </form>
          </div>
          <% } %>
 
-         <div class="col-md-6 offset-3 mb-3">
+         <div class="col-lg-8 offset-lg-2 mb-3">
             <% if(listing.reviews.length>0){ %>
                <hr>
                <p><b> All Reviews </b><p>
                <div class="row">
                <% for(let review of listing.reviews){ %>
-                <div class="card col-md-5 mb-3 ms-3">
+               <div class="col-md-5 mb-3 ms-1">
+                <div class="card">
                    <div class="card-body">
                      <h5 class="card-title"> @<%=review.authore.username %></h5>
                      <p class="starability-result" data-rating="<%=review.rating%>"></p>
@@ -84,14 +87,15 @@
                   <% } %>
                    </div>
                </div>
+               </div>
               <% } %>
               </div>
             <% } %>
          </div>
 
-         <div class="col-md-6 offset-3">
+         <div class="col-lg-8 offset-lg-2 ">
             <h1> where you'll be </h1>
-            <div id="map"></div>
+            <div id="map" class="ms-2"></div>
          </div>
      </div>
      <script>

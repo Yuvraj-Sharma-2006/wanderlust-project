@@ -12,7 +12,6 @@ body{
 
 /* Navbar */
 .navbar{
-    height:5rem;
     background-color:white;
 }
 
@@ -28,8 +27,7 @@ body{
 .search-form{
    height:3.5rem;
    color:white;
-   width:max-content;
-   padding-right:0.5rem;
+   padding-right:8px;
    border:1px solid rgba(0,0,0,0.2);
    border-radius:2rem;
 }
@@ -42,16 +40,13 @@ body{
 }
     
 .search-input{
-    width:max-content;
-    padding:0 0 0 1rem;
+    width:30%;
+    height:min-content;
     border-radius:2rem;
     text-align:center;
     border:none;
 }
 
-.search-input:hover{
-    background-color:rgba(0,0,0,0.1);
-}
 
 /* footer */
 .f-info{
@@ -103,6 +98,11 @@ body{
 
 .card-text p{
     font-weight:400;
+    text-transform:capitalize;
+}
+
+.card-text b,.title,.card-body p{
+    text-transform:capitalize;
 }
 
 .card-img-overlay{
@@ -115,10 +115,13 @@ body{
   background-color:white;
 }
 
-.listing-link{
+.listing-link,a{
     text-decoration:none;
 }
 
+.filter{
+    color:black;
+}
 /* new and edit  */
 .add-btn,.edit-btn{
     background-color:#fe424d;
@@ -129,7 +132,7 @@ body{
 .show-img{
     height:40vh;
     margin-left:5%;
-    width:80%;
+    width:90%;
     object-fit:cover;
 }
 
@@ -153,8 +156,15 @@ body{
 
 .filters{
     display:flex;
-    flex-wrap:wrap;
+    flex-wrap:nowrap;
     align-items:center;
+}
+
+.category-filters{
+    display:flex;
+    flex-wrap:nowrap;
+    overflow-x:scroll;
+    scrollbar-width: none;
 }
 .filter{
     text-align:center;
@@ -176,6 +186,12 @@ body{
     padding:0.8rem;
     border:1px solid black;
     border-radius:1rem;
+    width:max-content;
+    margin-left:1rem;
+}
+
+.tax-toggle .form-check-label{
+    width:max-content;
 }
 .card-text > i{
     visibility:hidden;
@@ -184,6 +200,41 @@ body{
 /* map */
 #map{
     height:250px;
-    width:50vw;
     margin-bottom:4rem;
+}
+
+/* responsiveness */
+@media  screen and (min-width:768px){
+   .search-box-first{
+      display:none;
+   }
+
+    .search-box-second{
+      width:50%;
+    }
+}
+
+@media  screen and (max-width:768px) and (min-width:516px){
+   .search-box-first{
+      width:75%;
+      margin-right:auto;
+   }
+
+    .search-box-second{
+      display:none;
+    }
+}
+
+@media  screen and (max-width:515px){
+   .search-box-first{
+      display:none;
+   }
+
+   .filters{
+     flex-wrap:wrap;
+   }
+
+   .tax-toggle{
+     margin:1rem 0;
+   }
 }

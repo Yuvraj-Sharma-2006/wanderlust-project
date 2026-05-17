@@ -28,6 +28,7 @@ module.exports.renderLoginForm = (req,res)=>{
 };
 
 module.exports.logIn = async(req,res)=>{
+    console.log(req.body);
      req.flash("success","welcome back to wanderlust");
    //   console.log(res.locals.redirectUrl);
      const redirectUrl = res.locals.redirectUrl || "/listings";

@@ -31,7 +31,8 @@ app.use(express.urlencoded({extended :true}));
 app.use(methodOverride("_method"));
 
 async function main(){
-    mongoose.connect(mongo_url);
+    // mongoose.connect(mongo_url);
+     await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
 }
 
 main().then(()=>{
@@ -41,7 +42,8 @@ main().then(()=>{
 });
 
 const sessionStore = MongoStore.create({
-    mongoUrl: mongo_url,
+    // mongoUrl: mongo_url,
+    mongoUrl: 'mongodb://127.0.0.1:27017/wanderlust',
     crypto : {
         secret : process.env.SECRET,
     },
@@ -55,7 +57,7 @@ const sessionOptions = {
     saveUninitialized : true,
     cookie : {
         expires : Date.now() +  30 * 24 * 60 * 60 * 1000,
-        maxAge : 30 * 24 * 60 * 60 * 1000,
+        maxAge : 14 * 24 * 60 * 60 * 1000,
         httpOnly :true
     },
 };

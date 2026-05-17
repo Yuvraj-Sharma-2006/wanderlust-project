@@ -28,7 +28,7 @@ module.exports.createNewListing =  async (req,res)=>{
     // console.log(listing);
     await listing.save();
     req.flash("success","new Listing Created");
-    res.redirect("./listings");
+    res.redirect("/listings");
 };
 
 module.exports.showListing = async(req,res)=>{
@@ -83,4 +83,30 @@ module.exports.destroyListing = async (req,res)=>{
     await Listing.findByIdAndDelete(id); 
     req.flash("success","Listing deleted ");
     res.redirect(`/listings`);
+};
+
+module.exports.filteredListing = async (req,res)=>{
+   const {cat} = req.params;
+   const allListings = await Listing.find({category : cat});
+   res.render("./listing/filteredListing.ejs",{allListings});
+};
+
+module.exports.searchListing = async (req,res)=>{
+  let filters = {};
+
+  if(req.query.location && req.query.location.trim() !== ""){
+      filters.location = req.query.location.toLowerCase();
+   }
+
+   if(req.query.country && req.query.country.trim() !== ""){
+      filters.country = req.query.country.toLowerCase();
+   }
+
+   if(req.query.price && req.query.price.trim() !== ""){
+      filters.price = Number(req.query.price);
+   }
+
+   const allListings = await Listing.find(filters);
+
+   res.render("./listing/filteredListing.ejs",{allListings});
 };

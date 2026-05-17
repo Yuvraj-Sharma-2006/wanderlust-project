@@ -6,12 +6,14 @@ const listingSchema = new Schema({
         type: String,
         required : true,
         trim :true,
-        minLength : 5
+        minLength : 5,
+        lowercase: true 
     },
     description : {
         type : String,
         trim : true,
-        minLength : 5
+        minLength : 5,
+        lowercase: true 
     },
     image : {
         url : String,
@@ -25,11 +27,13 @@ const listingSchema = new Schema({
         type : String,
         minLength : 3,
         required :true,
+        lowercase: true 
     },
     country : {
         type : String,
         minLength : 3,
         required :true,
+        lowercase: true 
     },
     reviews : [
       {
@@ -51,6 +55,12 @@ const listingSchema = new Schema({
       type: [Number],
       required: true
     }
+  },
+  category : {
+    type : String,
+    enum : ["trandings","mountains","amazing pools","iconic cities","rooms","camping","farms","arctic","casties","boating house"],
+    required:true,
+    lowercase: true 
   }
 }); 
 

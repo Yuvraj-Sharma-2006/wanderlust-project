@@ -1,7 +1,7 @@
 const Listing = require("./models/listing.js");
 const Review = require("./models/review.js");
 const ExpressError = require("./utils/ExpressError.js");
-const {listingSchema ,reviewSchema} = require("./schema.js");
+const {listingSchema ,reviewSchema,signSchema,logSchema,searchSchema } = require("./schema.js");
 
 module.exports.isLoggedIn = ((req,res,next)=> {
     if(!req.isAuthenticated()){
@@ -41,6 +41,36 @@ const {error} = listingSchema.validate(req.body);
 
 module.exports.validateReview = ((req,res,next)=>{
   const {error} = reviewSchema.validate(req.body);
+  if(error){
+     let errMsg = error.details.map(el => el.message).join(",");
+     throw new ExpressError(400,errMsg);
+  }else{
+    next();
+  }
+});
+
+module.exports.validateSignin = ((req,res,next)=>{
+  const {error} = signSchema.validate(req.body);
+  if(error){
+     let errMsg = error.details.map(el => el.message).join(",");
+     throw new ExpressError(400,errMsg);
+  }else{
+    next();
+  }
+});
+
+module.exports.validatelogin = ((req,res,next)=>{
+  const {error} = logSchema.validate(req.body);
+  if(error){
+     let errMsg = error.details.map(el => el.message).join(",");
+     throw new ExpressError(400,errMsg);
+  }else{
+    next();
+  }
+});
+
+module.exports.validateSearch = ((req,res,next)=>{
+  const {error} = searchSchema.validate(req.body);
   if(error){
      let errMsg = error.details.map(el => el.message).join(",");
      throw new ExpressError(400,errMsg);

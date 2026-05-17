@@ -1,0 +1,18 @@
+<form method="GET" 
+           action="/listings/search" 
+           class="needs-validation d-flex search-form" 
+           enctype="multipart/form-data" 
+           role="search"
+           novalidate >           
+    
+       <input class="form-control search-input mt-2" type="text" placeholder="Search destination" name="location" pattern="^(?=.{3,}$)[A-Za-z]+(?: [A-Za-z]+)*$" minlength='3'/>
+       <div class="invalid-feedback">location only have alphabet not space and special character</div>
+    
+       <input class="form-control search-input mt-2" type="text" placeholder="Search country" name="country" pattern="^(?=.{3,}$)[A-Za-z]+(?: [A-Za-z]+)*$" minlength='3'/>
+       <div class="invalid-feedback">Country only have alphabet not space and special character</div>
+      
+       <input class="form-control search-input mt-2" type="number" placeholder="Search price" name="price" min="0"/>
+       <div class="invalid-feedback"> price should be valid </div>
+      
+       <button class="btn search-btn ms-3" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+     </form>
