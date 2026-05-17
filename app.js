@@ -33,8 +33,7 @@ app.use(express.urlencoded({extended :true}));
 app.use(methodOverride("_method"));
 
 async function main(){
-    // mongoose.connect(mongo_url);
-     await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
+  mongoose.connect(mongo_url);
 }
 
 main().then(()=>{
@@ -44,8 +43,7 @@ main().then(()=>{
 });
 
 const sessionStore = MongoStore.create({
-    // mongoUrl: mongo_url,
-    mongoUrl: 'mongodb://127.0.0.1:27017/wanderlust',
+    mongoUrl: mongo_url,
     crypto : {
         secret : process.env.SECRET,
     },
@@ -84,16 +82,6 @@ app.get("/",asyncWrap(listingController.index));
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
 app.use("/",userRouter);
-
-// app.get("/demoUser",async (req,res)=>{
-//     const fakeUser = new User({
-//         email : 'student@gmail.com',
-//         username : 'deleta-student'
-//     });
-
-//     let user = await User.register(fakeUser,"hello world");
-//     res.send(user);
-// });
 
 app.use((req,res,next)=>{
    next(new ExpressError(404,"page not found!"));
